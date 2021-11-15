@@ -4,17 +4,17 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>CRIPTO</title>
   <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-  <div id="app">
+  <div id="app" v-bind:style="{background: '#' + color}">
     <img 
     v-on:mouseover="toggleShowPrices" 
     v-on:mouseout="toggleShowPrices" 
-    v-bind:src="img" v-bind:alt="name">
-    <h1>
-      {{name}}
+    v-bind:src="img" v-bind:alt="name" >
+    <h1 v-bind:class="changePercent >0 ? 'green' : 'red'">
+      {{title}}
       <span v-if="changePercent > 0">a</span>
       <span v-else-if ="changePercent < 0" > (y)</span>
       <span v-else> si</span>
@@ -23,7 +23,11 @@
     </h1>
 
     <ul v-show="showPrices">
-      <li v-for="(p,i) in pricesWithDays" v-bind:key="p.day">
+      <li 
+      class="uppercase"
+       v-bind:class="{ orange:p.value=== price, red:p.value < price, green:p.value >price}"
+       v-for="(p,i) in pricesWithDays"
+       v-bind:key="p.day">
         {{i}}-{{p.day}}-{{p.value}} 
     </ul>
   </div>
