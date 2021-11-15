@@ -9,14 +9,17 @@
 </head>
 <body>
   <div id="app">
-    <img v-on:mouseover="toggleShowPrices" v-bind:src="img" v-bind:alt="name">
+    <img 
+    v-on:mouseover="toggleShowPrices" 
+    v-on:mouseout="toggleShowPrices" 
+    v-bind:src="img" v-bind:alt="name">
     <h1>
       {{name}}
       <span v-if="changePercent > 0">a</span>
       <span v-else-if ="changePercent < 0" > (y)</span>
       <span v-else> si</span>
 
-      <span v-on:click="toggleShowPrices">{{showPrices ?'🙈':'b'}}</span>
+      <span v-on:click="toggleShowPrices">{{showPrices ?'🙈':'🙊'}}</span>
     </h1>
 
     <ul v-show="showPrices">
