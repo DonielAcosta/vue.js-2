@@ -11,7 +11,14 @@
   <div id="app" v-bind:style="{background: '#' + color}">
   
     <coin-detail 
+      v-on:change-color="updateColor"
       v-bind:coin="btc">
+     <template v-slot:text>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab sit quo delectus reiciendis? Vero maxime, quam nesciunt laboriosam laborum nam tenetur eveniet dolorem in, illo unde eum quae, ex adipisci!</p>
+     </template>
+     <template v-slot:link>
+      <a href="#">link</a>
+     </template>
     </coin-detail>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>

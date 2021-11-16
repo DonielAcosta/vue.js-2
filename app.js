@@ -12,6 +12,8 @@ Vue.component('CoinDetail',{
   methods:{
     toggleShowPrices(){
       this.showPrices =!this.showPrices
+
+      this.$emit('change-color',this.toggleShowPrices ? 'FF96C8':'3D3D3D')
     }
   },
 
@@ -25,6 +27,14 @@ Vue.component('CoinDetail',{
       }
       return this.value/this.coin.price
     }
+  },
+
+  created() {
+    console.log('Created CoinDetail....')
+  },
+
+  mounted() {
+    console.log('Mounted CoinDetail....')
   },
 
   template:`
@@ -47,6 +57,9 @@ Vue.component('CoinDetail',{
 
       <input type="number" v-model="value">
       <span>{{converteValue}}</span>
+
+      <slot name="text"></slot>
+      <slot name="link"></slot>
 
       <ul v-show="showPrices">
         <li 
@@ -89,14 +102,20 @@ new Vue({
  
     }
   },
+  
+  created() {
+    console.log('Created....')
+  },
 
-  // methods: {
-  //   toggleShowPrices(){
-  //     this.showPrices = !this.showPrices
+  mounted() {
+    console.log('Mounted....')
+  },
 
-  //     this.color= this.color.split('').reverse().join('')
-  //   }
-  // },
+  methods: {
+    updateColor(color){
+      this.color = color || this.color.split('').reverse().join('')
+    }
+  },
 })
 
 // Vue.component('CoinDetail', {
